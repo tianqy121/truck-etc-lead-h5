@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "2.112.2",
+    "@types/qrcode": "^1.5.5",
     "next": "16.2.6",
+    "qrcode": "^1.5.4",
     "react": "19.2.6",
     "react-dom": "19.2.6"
   },
@@ -39,5 +41,5 @@
     "wrangler": "4.92.0"
   },
   "type": "module",
-  "displayName": "\u8d27\u8f66ETC\u9700\u6c42\u54a8\u8be2H5"
+  "displayName": "货车ETC需求咨询H5"
 }

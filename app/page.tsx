@@ -47,9 +47,9 @@ export default function Home() {
         </div>
 
         <div className="hero-copy">
-          <div className="eyebrow"><span className="eyebrow-dot" />企业货车ETC需求咨询</div>
+          <div className="eyebrow"><span className="eyebrow-dot" />企业货车 ETC 办理咨询</div>
           <h1>让每一辆货车<br /><em>通行更高效</em></h1>
-          <p className="hero-lead">物流、冷链、配送、制造业运输车辆，<br />可先在线了解货车ETC办理与车辆管理服务。</p>
+          <p className="hero-lead">物流、冷链、配送、制造业运输车辆，<br />线上绑车、账户批扣、对账更方便。</p>
           <button className="primary-btn hero-btn" onClick={() => setShowForm(true)}>我有货车ETC需求 <span>→</span></button>
           <p className="microcopy">提交需求后，将由客户经理与您联系</p>
         </div>
@@ -68,9 +68,9 @@ export default function Home() {
         <h2>一次咨询，先把需求理清</h2>
         <p className="section-intro">根据企业车辆数量和使用情况，提供更合适的办理建议与后续服务。</p>
         <div className="benefit-grid">
-          <article><span className="icon-box">↗</span><h3>批量办理咨询</h3><p>适合物流、货运、冷链及配送企业。</p></article>
-          <article><span className="icon-box">▦</span><h3>车辆统一管理</h3><p>支持新办、新增、变更等需求了解。</p></article>
-          <article><span className="icon-box">◷</span><h3>专人跟进服务</h3><p>留下需求后，客户经理及时联系您。</p></article>
+          <article><span className="icon-box">↗</span><h3>线上绑车</h3><p>车辆签约流程线上办理，操作更便捷。</p></article>
+          <article><span className="icon-box">▦</span><h3>账户批扣</h3><p>保持账户余额充足，通行费用自动扣缴。</p></article>
+          <article><span className="icon-box">◷</span><h3>对账方便</h3><p>通行缴费记录更清晰，企业对账更省心。</p></article>
         </div>
       </section>
 
