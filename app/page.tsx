@@ -58,7 +58,14 @@ export default function Home() {
           <div className="sun-glow" />
           <div className="road-line road-line-one" />
           <div className="road-line road-line-two" />
-          <div className="truck"><div className="truck-cab" /><div className="truck-body" /><i /><i /></div>
+          <div className="truck">
+            <div className="truck-speed truck-speed-one" />
+            <div className="truck-speed truck-speed-two" />
+            <div className="truck-body"><span className="truck-body-shine" /><span className="truck-etc-badge">ETC</span></div>
+            <div className="truck-cab"><span className="truck-windshield" /><span className="truck-headlamp" /></div>
+            <div className="truck-chassis" />
+            <i /><i />
+          </div>
         </div>
         <div className="hero-fade" />
       </section>
