@@ -30,7 +30,7 @@ export default function ManagerClient() {
     ctx.fillStyle = "#ffffff"; ctx.font = "bold 56px Arial, Microsoft YaHei"; ctx.fillText("企业货车 ETC", 60, 184); ctx.fillText("办理咨询", 60, 252);
     ctx.fillStyle = "#f8d8ad"; ctx.font = "28px Arial, Microsoft YaHei"; ctx.fillText("线上绑车 · 账户批扣 · 对账方便", 62, 315);
     ctx.fillStyle = "#e9ae63"; ctx.fillRect(63, 382, 180, 12); ctx.fillStyle = "#fff5eb"; ctx.font = "28px Arial, Microsoft YaHei"; ctx.fillText("专人跟进服务", 62, 440);
-    ctx.fillStyle = "#e8b06d"; ctx.fillRect(400, 570, 230, 90); ctx.fillStyle = "#f6c984"; ctx.fillRect(610, 600, 100, 60); ctx.fillStyle = "#4b151a"; ctx.fillRect(630, 615, 50, 22); ctx.fillStyle = "#321116"; [440, 645].forEach((x) => { ctx.beginPath(); ctx.arc(x, 680, 28, 0, Math.PI * 2); ctx.fill(); });
+    drawPremiumTruck(ctx, 398, 546);
     ctx.fillStyle = "#fffdf8"; roundRect(ctx, 60, 760, 630, 355, 28); ctx.fill();
     const image = new Image(); image.onload = () => { ctx.drawImage(image, 455, 795, 190, 190); ctx.fillStyle = "#6a4b46"; ctx.font = "24px Arial, Microsoft YaHei"; ctx.fillText("扫码提交需求", 94, 830); ctx.fillStyle = "#311b1c"; ctx.font = "bold 36px Arial, Microsoft YaHei"; ctx.fillText(manager.managerName, 94, 885); ctx.font = "24px Arial, Microsoft YaHei"; ctx.fillText("为您提供专属服务", 94, 928); ctx.fillStyle = "#9c8379"; ctx.font = "20px Arial, Microsoft YaHei"; ctx.fillText("长按识别二维码，提交企业货车 ETC 办理需求", 94, 1045); const link = document.createElement("a"); link.download = `鑫出行ETC-${manager.managerName}-专属推广海报.png`; link.href = canvas.toDataURL("image/png"); link.click(); setMessage(`${manager.managerName} 的专属推广海报已下载。`); }; image.src = qr;
   }
@@ -39,4 +39,34 @@ export default function ManagerClient() {
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
   ctx.beginPath(); ctx.roundRect(x, y, width, height, radius); ctx.closePath();
+}
+
+function drawPremiumTruck(ctx: CanvasRenderingContext2D, x: number, y: number) {
+  // 与 H5 首页同款的金色 ETC 厢式货车，保留高光、挡风玻璃、车灯与轮毂细节。
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.transform(1, 0, -0.09, 1, 0, 0);
+
+  const body = ctx.createLinearGradient(0, 0, 150, 76);
+  body.addColorStop(0, "#f0bd74"); body.addColorStop(1, "#cf873e");
+  ctx.fillStyle = body; roundRect(ctx, 0, 0, 150, 70, 8); ctx.fill();
+  ctx.fillStyle = "#af642f"; ctx.fillRect(0, 58, 150, 12);
+  ctx.fillStyle = "#ffe0ac"; ctx.globalAlpha = .7; roundRect(ctx, 16, 12, 76, 4, 2); ctx.fill(); ctx.globalAlpha = 1;
+  ctx.strokeStyle = "#fff3db"; ctx.globalAlpha = .55; ctx.strokeRect(112, 12, 25, 18); ctx.globalAlpha = 1;
+  ctx.fillStyle = "#fff5e4"; ctx.font = "bold 10px Arial"; ctx.fillText("ETC", 115, 25);
+
+  const cab = ctx.createLinearGradient(150, 12, 232, 70);
+  cab.addColorStop(0, "#f8d69c"); cab.addColorStop(1, "#e5a35c");
+  ctx.fillStyle = cab; roundRect(ctx, 148, 21, 82, 49, 7); ctx.fill();
+  ctx.fillStyle = "#893338"; roundRect(ctx, 174, 30, 37, 21, 3); ctx.fill();
+  ctx.fillStyle = "#572129"; ctx.fillRect(178, 34, 29, 14);
+  ctx.fillStyle = "#ffe5a6"; roundRect(ctx, 228, 54, 6, 12, 3); ctx.fill();
+  ctx.fillStyle = "#683035"; roundRect(ctx, 12, 68, 210, 8, 4); ctx.fill();
+
+  [34, 182].forEach((wheelX) => {
+    ctx.fillStyle = "#2b161b"; ctx.beginPath(); ctx.arc(wheelX, 77, 21, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#d79a56"; ctx.lineWidth = 7; ctx.beginPath(); ctx.arc(wheelX, 77, 17, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = "#f3c985"; ctx.beginPath(); ctx.arc(wheelX, 77, 7, 0, Math.PI * 2); ctx.fill();
+  });
+  ctx.restore();
 }
