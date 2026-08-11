@@ -13,8 +13,16 @@ export async function POST(request: Request) {
     const industry = clean(body.industry), vehicleCount = clean(body.vehicleCount), contactName = clean(body.contactName), phone = clean(body.phone);
     if (!industries.has(industry) || !vehicleCounts.has(vehicleCount) || !contactName) return Response.json({ error: "请完整填写需求信息。" }, { status: 400 });
     if (!/^1\d{10}$/.test(phone)) return Response.json({ error: "请输入正确的手机号码。" }, { status: 400 });
+    const referralCode = clean(body.ref).toLowerCase();
+    let managerCode: string | null = null;
+    let managerName: string | null = null;
+    if (referralCode) {
+      const { data: manager, error: managerError } = await getDb().from("truck_etc_managers").select("manager_code, manager_name").eq("manager_code", referralCode).eq("active", true).maybeSingle();
+      if (managerError) throw managerError;
+      if (manager) { managerCode = manager.manager_code; managerName = manager.manager_name; }
+    }
     const leadNo = `HC-${new Date().toISOString().slice(0, 7).replace("-", "")}-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
-    const { data, error } = await getDb().from("truck_etc_leads").insert({ lead_no: leadNo, industry, vehicle_count: vehicleCount, contact_name: contactName, phone }).select("lead_no").single();
+    const { data, error } = await getDb().from("truck_etc_leads").insert({ lead_no: leadNo, industry, vehicle_count: vehicleCount, contact_name: contactName, phone, source: managerCode ? "个人微信专属链接" : "货车ETC H5", manager_code: managerCode, manager_name: managerName }).select("lead_no").single();
     if (error) throw error;
     return Response.json({ success: true, leadNo: data.lead_no }, { status: 201 });
   } catch (error) {

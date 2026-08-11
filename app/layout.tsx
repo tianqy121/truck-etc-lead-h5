@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "货车ETC需求咨询H5",
-  description: "鑫出行企业货车ETC需求咨询与线索管理",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://truck-etc-lead-h5.vercel.app"),
+  title: "企业货车ETC批量办理咨询",
+  description: "批量签约、车辆管理、通行对账，专人跟进服务。",
+  openGraph: { type: "website", locale: "zh_CN", title: "企业货车ETC批量办理咨询", description: "批量签约、车辆管理、通行对账，专人跟进服务。", siteName: "鑫出行（ETC）" },
+  twitter: { card: "summary_large_image", title: "企业货车ETC批量办理咨询", description: "批量签约、车辆管理、通行对账，专人跟进服务。" },
   other: {
     "codex-preview": "development",
   },

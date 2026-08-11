@@ -8,6 +8,8 @@ export type LeadRow = {
   contact_name: string;
   phone: string;
   source: string;
+  manager_code: string | null;
+  manager_name: string | null;
   status: string;
   created_at: string;
 };
@@ -20,6 +22,8 @@ export type Lead = {
   contactName: string;
   phone: string;
   source: string;
+  managerCode: string | null;
+  managerName: string | null;
   status: string;
   createdAt: string;
 };
@@ -37,7 +41,7 @@ export function getDb(): SupabaseClient {
 }
 
 export function toLead(row: LeadRow): Lead {
-  return { id: row.id, leadNo: row.lead_no, industry: row.industry, vehicleCount: row.vehicle_count, contactName: row.contact_name, phone: row.phone, source: row.source, status: row.status, createdAt: row.created_at };
+  return { id: row.id, leadNo: row.lead_no, industry: row.industry, vehicleCount: row.vehicle_count, contactName: row.contact_name, phone: row.phone, source: row.source, managerCode: row.manager_code, managerName: row.manager_name, status: row.status, createdAt: row.created_at };
 }
 
 export function databaseErrorMessage(error: unknown): string {

@@ -22,6 +22,7 @@ export default function Home() {
           vehicleCount: form.get("vehicleCount"),
           contactName: form.get("contactName"),
           phone: form.get("phone"),
+          ref: new URLSearchParams(window.location.search).get("ref") ?? "",
         }),
       });
       const result = (await response.json()) as { error?: string };
@@ -39,7 +40,10 @@ export default function Home() {
       <section className="hero">
         <div className="topbar">
           <div className="brand"><span className="brand-mark">ETC</span><span>鑫出行</span></div>
-          <span className="topbar-tag">企业货车服务</span>
+          <div className="topbar-actions">
+            <span className="topbar-tag">企业货车服务</span>
+            <a className="admin-entry" href="/admin" aria-label="进入后台管理">后台管理</a>
+          </div>
         </div>
 
         <div className="hero-copy">
